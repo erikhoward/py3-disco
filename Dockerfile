@@ -1,15 +1,15 @@
-#   DESCRIPTION: Python3 data science development container
+#   DESCRIPTION: Python3 Machine Learning development container
 #   AUTHOR:     Erik Howard <erikhoward@protonmail.com>
-#   COMMENT:    A Python3 development environment that contains many
-#               popular data science packages
+#   COMMENT:    A Python3 machine learning development environment that contains many
+#               popular machine learning, data science and computer vision packages
 #   USAGE:
 #
 #       Interactive terminal
-#       docker run --rm -it --name py3ds -v $HOME/data:/data erikhoward/python3 /bin/bash
+#       docker run --rm -it --name pydisco erikhoward/py3-disco /bin/bash
 #
 #       Jupyter notebook
 #       docker run -rm \
-#       -it -p 8888:8888 erikhoward/python3-datascience \
+#       -it -p 8888:8888 erikhoward/py3-disco \
 #       -v $HOME/src/notebooks:/src/notebooks \
 #	-w /src/notebooks \
 #       /bin/bash -c "mkdir -p /src/notebooks && /opt/conda/bin/jupyter notebook --notebook-dir=/src/notebooks --ip='*' --port=8888 --no-browser --allow-root"
@@ -78,7 +78,7 @@ RUN conda update -y conda && conda update -y python && \
 
 RUN pip install --upgrade pip && \
     pip install geopandas missingno xgboost catboost lightgbm && \
-    pyro-ppl && \
+    pip3 install pyro-ppl && \
     conda clean -yt
 
 # Update numpy
