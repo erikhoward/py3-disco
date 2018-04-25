@@ -7,7 +7,7 @@ Dockerfile containing common Python3 packages used for Data Science
 docker run --rm -it \
   --name py3ds \
   -v $HOME/data:/data \
-  erikhoward/python3-datascience /bin/bash
+  erikhoward/py3-disco /bin/bash
 ```
 
 ## Licence
