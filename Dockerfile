@@ -77,7 +77,7 @@ RUN conda update -y conda && conda update -y python && \
     conda install -y -c https://conda.anaconda.org/menpo opencv3
 
 RUN pip install --upgrade pip && \
-    pip install geopandas missingno xgboost catboost lightgbm && \
+    pip install geopandas missingno xgboost catboost lightgbm allennlp&& \
     pip3 install pyro-ppl && \
     conda clean -yt
 
@@ -91,5 +91,13 @@ RUN pip3 install --upgrade tensorflow
 ARG KERAS_VERSION=2.1.4
 ENV KERAS_BACKEND=tensorflow
 RUN pip3 --no-cache-dir install --upgrade keras
+
+# Download spaCy models
+RUN python -m spacy download en \
+    && python -m spacy download de \
+    && python -m spacy download es \
+    && python -m spacy download fr \
+    && python -m spacy download it \
+    && python -m spacy download nl
 
 WORKDIR /src
