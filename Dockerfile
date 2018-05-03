@@ -73,6 +73,7 @@ RUN conda update -y conda && conda update -y python && \
     seaborn bokeh notebook nltk pip scipy jupyter && \
     conda install -y cython hdf5 pytables && \
     conda install -y -c conda-forge rtree wordcloud lightgbm && \
+    conda install -y -c conda-forge jupyter_contrib_nbextensions && \
     conda install pytorch-cpu torchvision -c pytorch && \
     conda install -y -c https://conda.anaconda.org/menpo opencv3
 
