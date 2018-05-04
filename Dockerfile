@@ -79,19 +79,19 @@ RUN conda update -y conda && conda update -y python && \
 
 RUN pip install --upgrade pip && \
     pip install geopandas missingno xgboost catboost lightgbm allennlp&& \
-    pip3 install pyro-ppl && \
+    pip install pyro-ppl && \
     conda clean -yt
 
 # Update numpy
-RUN pip3 --no-cache-dir install -U numpy==1.13.3
+RUN pip --no-cache-dir install -U numpy==1.13.3
 
 # Install Tensorflow
-RUN pip3 install --upgrade tensorflow
+RUN pip install --upgrade tensorflow
 
 # Keras
 ARG KERAS_VERSION=2.1.4
 ENV KERAS_BACKEND=tensorflow
-RUN pip3 --no-cache-dir install --upgrade keras
+RUN pip --no-cache-dir install --upgrade keras
 
 # Download spaCy models
 RUN python -m spacy download en \
@@ -100,5 +100,8 @@ RUN python -m spacy download en \
     && python -m spacy download fr \
     && python -m spacy download it \
     && python -m spacy download nl
+
+RUN mkdir -p /src/examples/notebooks
+COPY notebooks /src/examples/notebooks
 
 WORKDIR /src
