@@ -12,7 +12,7 @@
 #       -it -p 8888:8888 erikhoward/py3-disco \
 #       -v $HOME/src/notebooks:/src/notebooks \
 #	-w /src/notebooks \
-#       /bin/bash -c "mkdir -p /src/notebooks && /opt/conda/bin/jupyter notebook --notebook-dir=/src/notebooks --ip='*' --port=8888 --no-browser --allow-root"
+#       /bin/bash -c "/opt/conda/bin/jupyter lab --ip='*' --port=8888 --no-browser --allow-root --LabApp.notebook_dir=/src/examples/notebooks"
 
 # Base docker image
 FROM continuumio/miniconda3:4.4.10
@@ -70,10 +70,9 @@ RUN echo "America/Los_Angeles" > /etc/timezone && \
 # Install essential data science packages
 RUN conda update -y conda && conda update -y python && \
     conda install -y scipy scikit-learn scikit-image nose readline pandas matplotlib sqlalchemy \
-    seaborn bokeh notebook nltk pip scipy jupyter && \
+    seaborn bokeh notebook nltk pip scipy && \
     conda install -y cython hdf5 pytables && \
-    conda install -y -c conda-forge rtree wordcloud lightgbm && \
-    conda install -y -c conda-forge jupyter_contrib_nbextensions && \
+    conda install -y -c conda-forge rtree wordcloud lightgbm jupyterlab && \
     conda install pytorch-cpu torchvision -c pytorch && \
     conda install -y -c https://conda.anaconda.org/menpo opencv3
 
